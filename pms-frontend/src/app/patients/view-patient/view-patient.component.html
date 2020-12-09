@@ -1,0 +1,58 @@
+<div class="container">
+  <h1>Patient Info</h1>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="row">
+      <div class="form-group col-3">
+        <label for="firstName">First Name</label>
+        <input class="form-control" type="text" id="firstName" formControlName="firstName" readonly/>
+      </div>
+      <div class="form-group col-3">
+        <label for="lastName">Last Name</label>
+        <input class="form-control" type="text" id="lastName" formControlName="lastName" readonly/>
+      </div>
+      <div class="form-group col-3">
+        <label for="insuranceNumber">Insurance Number</label>
+        <input class="form-control" type="text" id="insuranceNumber" formControlName="insuranceNumber" readonly/>
+      </div>
+      <div class="form-group col-3">
+        <label for="dateOfBirth">Date of Birth</label>
+        <input class="form-control" type="date" id="dateOfBirth" formControlName="dateOfBirth" readonly />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input class="form-control" type="text" id="address" formControlName="address" readonly />
+    </div>
+
+    <div class="row">
+      <div class="form-group col-3">
+        <label for="phoneNumber">Phone Number</label>
+        <input class="form-control" type="text" id="phoneNumber" formControlName="phoneNumber" readonly />
+      </div>
+      <div class="form-group col-3">
+        <label for="externalDoctor">External Doctor</label>
+        <input class="form-control" type="text" id="externalDoctor" formControlName="externalDoctor" readonly/>
+      </div>
+      <div class="form-group col-3">
+        <label for="sex">Sex</label>
+        <select class="form-control" id="sex" formControlName="sex" disabled>
+          <option value="MALE" >Male</option>
+          <option value="FEMALE">Female</option>
+          <option value="OTHER">Other</option>
+        </select>
+      </div>
+      <div class="form-group col-3">
+        <label for="maritalStatus">Marital Status</label>
+        <select class="form-control" id="maritalStatus" formControlName="maritalStatus" disabled>
+          <option value="SINGLE">Single</option>
+          <option value="MARRIED">Married</option>
+          <option value="COMMON_LAW">Common Law</option>
+          <option value="SEPARATED">Separated</option>
+          <option value="WIDOWED">Widowed</option>
+          <option value="OTHER">Other</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>

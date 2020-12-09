@@ -1,0 +1,90 @@
+<div class="container">
+  <h1>Division</h1>
+
+  <h2>Details</h2>
+
+  <div *ngIf="loading[0]" class="text-center">
+    <div class="spinner-border" role="status"></div>
+  </div>
+
+  <div class="alert alert-danger" *ngIf="!loading[0] && error[0]">Failed to load division: {{error[0]}}</div>
+
+  <ng-container *ngIf="division">
+    <div class="lead">{{division.divisionName}} ({{division.divisionNumber}}) &ndash; {{division.location}}</div>
+
+    <dl class="mt-3">
+      <dt>Availability</dt>
+      <dd>{{division.availability}}</dd>
+
+      <dt>Number of Beds</dt>
+      <dd>{{division.numberOfBeds}}</dd>
+
+      <dt>Phone Extension</dt>
+      <dd>{{division.phoneExtension}}</dd>
+    </dl>
+  </ng-container>
+
+  <h2>Admission Requests</h2>
+
+  <div *ngIf="loading[1]" class="text-center">
+    <div class="spinner-border" role="status"></div>
+  </div>
+
+  <div class="alert alert-info" *ngIf="!loading[1] && !admissionRequests.length">No admission requests.</div>
+  <div class="alert alert-danger" *ngIf="!loading[1] && error[1]">Failed to load admission requests: {{error[1]}}</div>
+
+  <table class="table" *ngIf="admissionRequests.length">
+    <thead>
+    <tr>
+      <th>Patient</th>
+      <th>Doctor</th>
+      <th>Reason</th>
+      <th>Priority</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let request of admissionRequests">
+      <td>{{request.patient.firstName}} {{request.patient.lastName}}</td>
+      <td>{{request.doctor.firstName}} {{request.doctor.lastName}}</td>
+      <td>{{request.requestReason}}</td>
+      <td>{{request.priority}}</td>
+      <td>
+        <a href="#" [routerLink]="['admit', request.id]" class="btn btn-primary">Admit</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <h2>Admissions</h2>
+
+  <div *ngIf="loading[2]" class="text-center">
+    <div class="spinner-border" role="status"></div>
+  </div>
+
+  <div class="alert alert-info" *ngIf="!loading[2] && !admissions.length">No admissions.</div>
+  <div class="alert alert-danger" *ngIf="!loading[2] && error[2]">Failed to load admissions: {{error[2]}}</div>
+
+  <table class="table" *ngIf="admissions.length">
+    <thead>
+    <tr>
+      <th>Patient</th>
+      <th>Doctor</th>
+      <th>Room and Bed</th>
+      <th>Private Insurance Number</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let request of admissions">
+      <td>{{request.patient.firstName}} {{request.patient.lastName}}</td>
+      <td>{{request.doctor.firstName}} {{request.doctor.lastName}}</td>
+      <td>{{request.roomNumber}}, {{request.bedNumber}}</td>
+      <td>{{request.privateInsuranceNumber}}</td>
+      <td>
+        <button class="btn btn-primary" (click)="discharge(request.patient.id, request.id)">Discharge</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

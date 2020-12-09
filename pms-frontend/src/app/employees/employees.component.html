@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Employees</h1>
+
+  <a class="btn btn-primary" routerLink="new">Add Employee</a>
+
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border" role="status"></div>
+  </div>
+
+  <div class="alert alert-danger" *ngIf="!loading && error">Failed to load employees: {{error}}</div>
+  <div class="alert alert-info" *ngIf="!loading && !employees.length">No employees found</div>
+
+  <table class="table mt-3" *ngIf="!loading && employees.length">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Employee Number</th>
+      <th>Email Address</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let employee of employees">
+      <td>{{employee.lastName}}, {{employee.firstName}}</td>
+      <td>{{employee.type}}</td>
+      <td>{{employee.employeeNumber}}</td>
+      <td><a href="mailto:{{employee.emailAddress}}">{{employee.emailAddress}}</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

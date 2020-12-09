@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Prescriptions</h1>
+
+  <a class="btn btn-primary" routerLink="new">Add Prescription</a>
+
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border" role="status"></div>
+  </div>
+
+  <div class="alert alert-danger" *ngIf="!loading && error">Failed to load patients: {{error}}</div>
+  <div class="alert alert-info" *ngIf="!loading && !prescriptions.length">No patients found</div>
+
+  <table class="table mt-3" *ngIf="!loading && prescriptions.length">
+    <thead>
+    <tr>
+      <th>Patient</th>
+      <th>Medication</th>
+      <th>Daily Units</th>
+      <th>Daily Administrations</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let prescription of prescriptions">
+      <td>{{prescription.patient.lastName}}, {{prescription.patient.firstName}}</td>
+      <td>{{prescription.medicationName}} ({{prescription.medicationNumber}})</td>
+      <td>{{prescription.unitsPerDay}}</td>
+      <td>{{prescription.administrationsPerDay}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

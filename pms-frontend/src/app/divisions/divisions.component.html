@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Divisions</h1>
+
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border" role="status"></div>
+  </div>
+
+  <div class="alert alert-danger" *ngIf="!loading && error">Failed to load divisions: {{error}}</div>
+  <div class="alert alert-info" *ngIf="!loading && !divisions.length">No divisions found</div>
+
+  <table class="table mt-3" *ngIf="!loading && divisions.length">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Availability</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let division of divisions">
+      <td>{{division.divisionName}} ({{division.divisionNumber}})</td>
+      <td>{{division.location}}</td>
+      <td>{{division.availability}}</td>
+      <td>
+        <button routerLink="/divisions/{{division.id}}" class="btn btn-light mr-1">Details</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
